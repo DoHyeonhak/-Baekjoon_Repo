@@ -1,29 +1,28 @@
 import java.util.*;
+import java.io.*;
 
 public class Main {
-    public static void main(String[] args) {
-        // 
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int M = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());   // 듣
+        int M = Integer.parseInt(st.nextToken());   // 보
         HashSet<String> set = new HashSet<>();
-        ArrayList<String> ans = new ArrayList<>();
-
-        for (int i = 0; i < N; i++) {
-            set.add(sc.next());
+        ArrayList<String> list = new ArrayList<>();
+        for(int i = 0; i < N; i++) {
+            set.add(br.readLine());
         }
-
-        for (int i = 0; i < M; i++) {
-            String temp = sc.next();
-            if(set.contains(temp)) {
-                ans.add(temp);
+        for(int i = 0; i < M; i++) {
+            String name = br.readLine();
+            if(set.contains(name)) {
+                list.add(name);
             }
         }
-        Collections.sort(ans);
-
-        System.out.println(ans.size());
-        for(int i = 0; i < ans.size(); i++) {
-            System.out.println(ans.get(i));
+        Collections.sort(list);
+        System.out.println(list.size());
+        for(int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
         }
     }
 }
+
