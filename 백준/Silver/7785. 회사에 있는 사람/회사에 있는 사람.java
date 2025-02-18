@@ -4,20 +4,22 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        HashMap<String, String> map = new HashMap<>();
-        int N = Integer.parseInt(br.readLine());
-        for(int i = 0; i < N; i++) {
-            String[] input = br.readLine().split(" ");
-            if(map.containsKey(input[0])) {
-                map.remove(input[0]);
+        int n = Integer.parseInt(br.readLine());
+        HashMap<String, Integer> names = new HashMap<>();
+        for(int i = 0; i < n; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            String name = st.nextToken();
+            if(!names.containsKey(name)) {
+                names.put(name, 0);
             }else{
-                map.put(input[0], input[1]);
+                names.remove(name);
             }
         }
-        List<String> list = new ArrayList<String>(map.keySet());
-        Collections.sort(list, Collections.reverseOrder());
-        for(String s : list) {
-            System.out.println(s);
+        List<String> keys = new ArrayList<>(names.keySet());
+        Collections.sort(keys, Collections.reverseOrder());
+        for(String key : keys) {
+            System.out.println(key);
         }
     }
 }
+
