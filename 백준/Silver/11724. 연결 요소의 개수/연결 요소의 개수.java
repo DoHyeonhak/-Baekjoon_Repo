@@ -8,7 +8,8 @@ public class Main {
     static int e;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        // DFS
+        // DFS: 스택, 재귀형 사용
+        // BFS: 큐 사용
         StringTokenizer st = new StringTokenizer(br.readLine());
         v = Integer.parseInt(st.nextToken());   // 정점 개수
         e = Integer.parseInt(st.nextToken());   // 간선 개수
@@ -24,7 +25,8 @@ public class Main {
         int cnt = 0;
         for(int i = 1; i <= v; i++){ // 꼭짓점 개수만큼 반복
             if(!visited[i]){
-                dfs(i);
+//                dfs(i);
+                bfs(i);
                 cnt++;
             }
         }
@@ -38,6 +40,20 @@ public class Main {
             for(int i = 1; i <= v; i++){
                 if(graph[idx][i] == 1){
                     dfs(i);
+                }
+            }
+        }
+    }
+    public static void bfs(int idx){
+        Queue<Integer> q = new LinkedList<>();
+        q.add(idx);
+        visited[idx] = true;
+        while(!q.isEmpty()){
+            int cur = q.poll();
+            for(int i = 1; i <= v; i++){
+                if(!visited[i] && graph[cur][i] == 1){
+                    visited[i] = true;
+                    q.add(i);
                 }
             }
         }
