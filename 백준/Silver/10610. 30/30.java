@@ -4,9 +4,11 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        // 30배수
-        // 끝자리 0
-        // 3의 배수는 각 자리를 다 더했을 때에도 3의 배수
+        // 30의 배수. . . 3의 배수는 각 자리 다 더하면 3의 배수가 된다.
+        // 30이면 일단 끝자리는 0이다
+        // 1. 0이 있는지 없는지 확인
+        // 2. 각 자리의 합이 3의 배수인지 확인
+
         String str = br.readLine();
         int[] arr = new int[str.length()];
         int sum = 0;
@@ -15,12 +17,15 @@ public class Main {
             sum += arr[i];
         }
         Arrays.sort(arr);
+        StringBuilder sb = new StringBuilder();
         if(sum%3==0&&arr[0]==0){
-            for(int i = arr.length-1; i>=0; i--){
-                System.out.print(arr[i]);
+            for(int i = str.length()-1; i >= 0; i--){
+                sb.append(arr[i]);
             }
         }else{
-            System.out.println(-1);
+            sb.append(-1);
         }
+        System.out.println(sb.toString());
+
     }
 }
